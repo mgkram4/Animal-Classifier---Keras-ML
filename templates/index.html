@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Image Classifier</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <div class="product-card">
+        <h1>Image Classifier</h1>
+        <h2>Upload an Image for Prediction</h2>
+        <form
+          id="upload-form"
+          action="/predict"
+          method="post"
+          enctype="multipart/form-data"
+        >
+          <input type="file" name="file" accept="image/*" />
+          <br />
+          <input type="submit" value="Upload" />
+        </form>
+        <div id="result">
+          <h2>Result:</h2>
+          <p id="predicted-label"></p>
+        </div>
+      </div>
+    </div>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        var form = document.getElementById("upload-form");
+        form.addEventListener("submit", function (event) {
+          event.preventDefault();
+          var formData = new FormData(form);
+          fetch("/predict", {
+            method: "POST",
+            body: formData,
+          })
+            .then((response) => response.json())
+            .then((data) => {
+              document.getElementById("predicted-label").textContent =
+                "Predicted Label: " + data.predicted_label;
+            })
+            .catch((error) => {
+              document.getElementById("predicted-label").textContent =
+                "Error: " + error;
+            });
+        });
+      });
+    </script>
+  </body>
+</html>

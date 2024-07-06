@@ -1,0 +1,90 @@
+/* Container styles */
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f4f4f4; /* Background color for the entire page */
+}
+
+/* Product card styles */
+.product-card {
+  background-color: #fff; /* Background color for the product card */
+  border-radius: 20px; /* Rounded corners for the product card */
+  padding: 20px; /* Padding inside the product card */
+  max-width: 600px; /* Maximum width of the product card */
+  position: relative; /* Position relative for pseudo-elements */
+}
+
+/* Border styles for the product card */
+.product-card::before,
+.product-card::after {
+  content: "";
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  right: -10px;
+  bottom: -10px;
+  z-index: -1;
+  background: linear-gradient(
+    45deg,
+    #ff7676,
+    #003b6f
+  ); /* Gradient border colors */
+  border-radius: 20px; /* Match border-radius of the product card */
+}
+
+/* Adjust inner padding to make room for border */
+.product-card::before {
+  top: -12px;
+  left: -12px;
+  right: -12px;
+  bottom: -12px;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333; /* Heading color */
+}
+
+h2 {
+  margin-bottom: 20px;
+  color: #555; /* Sub-heading color */
+}
+
+form {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+input[type="file"] {
+  margin-bottom: 20px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+input[type="submit"] {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: #fff;
+  cursor: pointer;
+}
+
+input[type="submit"]:hover {
+  background-color: #0056b3;
+}
+
+#result {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+#predicted-label {
+  font-size: 18px;
+  color: #007bff;
+}
